@@ -9,9 +9,13 @@ data:
     listen  [::]:80;
     server_name  _;
     location / {
-    auth_basic  "if you mind...";
-    auth_basic_user_file /vault/secrets/users;
+        auth_basic  "if you mind...";
+        auth_basic_user_file /vault/secrets/users;
         root   /usr/share/nginx/html;
         index  index.html index.htm;
+        error_page 401 =403 /forbidden;
+    }
+    location = /forbidden {
+        return 403 'Access denied.';
     }
     }

@@ -53,7 +53,7 @@ vault write auth/kubernetes/config \
 ##### To enable KV secret and create a secret for users, run the following commands:
 ```bash
 vault secrets enable -version=2 kv
-vault kv put kv/users user1=pass1 user2=pass2
+vault kv put kv/users daniel=password1  robin=password2
 ```
 ### Creating a Policy with Read Access to User Secrets
 ##### To create a policy with read access to user secrets, run the following commands:
@@ -91,8 +91,8 @@ helm install nginx -n nginx chart/nginx/
 ##### To test basic authentication, run the following commands:
 ```bash
 kubectl port-forward -n nginx  svc/nginx 8080:80 &
-curl  http://localhost:8080/  -I #This should return a status code of 401
-curl -u user1:pass1 http://localhost:8080/  -I #This should return a status code of 200
-curl -u user2:pass2 http://localhost:8080/  -I #This should return a status code of 200
-curl -u whatever:whateverAgain http://localhost:8080/  -I #This should return a status code of 401
+curl  http://localhost:8080/  -I #This should return a status code of 403
+curl -u daniel:password1 http://localhost:8080/  -I #This should return a status code of 200
+curl -u robin:password2 http://localhost:8080/  -I #This should return a status code of 200
+curl -u whatever:whateverAgain http://localhost:8080/  -I #This should return a status code of 403
 ```
