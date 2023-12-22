@@ -1,0 +1,2 @@
+## Nginx chart
+##### This chart provides the fundamental requirements for the task at hand. While it may not be fully optimized or intricately designed, it is capable of meeting our needs. Please note that some configurations are hardcoded.
